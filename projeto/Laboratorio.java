@@ -8,6 +8,11 @@ public class Laboratorio {
         listaExamesDisponiveis = ListaLinear <Exame>(150);
         pedidosDia = ListaLinear <PedidoExame>(100);
     }
+
+    //public adcionarPaciente(){}
+
+
+
     // throws Exception só funciona no mai, aqui usa try catch
     public void lerArquivo(){
         try {
