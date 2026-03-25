@@ -1,11 +1,11 @@
-public class ListaLinear {
-    Exame[] A; // vetor de obj do tipo exame , precisa trocar pra generico(pesquisar)
+public class ListaLinear <T> {
+    T[] A; // generico
     int capacity; // capacidade do vetor
     int size; // elementos no vetor,quant tem
 
     public ListaLinear (int capacity) {
-        A = new Exame[capacity]; //flexibilidade 
-        this.size = 0;
+        A = (T[]) new Object[capacity]; //flexibilidade 
+        this.size = 9;
         this.capacity = capacity;
     }
     public boolean isEmpty() {
@@ -23,7 +23,7 @@ public class ListaLinear {
         }*/
        return size;
     }
-    public Exame get(Exame i) throws Exception {
+    public T get(int i) throws Exception {
         // lança exception, mostra oq tem na posicao i
         if (i >= size) {
             throw new Exception ("Posição inválida");
@@ -32,7 +32,7 @@ public class ListaLinear {
         return A[i];
         
     }
-    public void set(int i, Exame n) throws Exception {
+    public void set(int i, T n) throws Exception {
         // altera o conteudo da posicao i por n, substituicao
         if (i >= size) {
             throw new Exception ("Posição inválida");
@@ -40,7 +40,7 @@ public class ListaLinear {
         }
         A[i] = n;
     }
-    public void add(int i, Exame n) throws Exception {
+    public void add(int i, T n) throws Exception {
         // insere novo element na posicao esp
         if (size == capacity) {
             throw new Exception ("A lista está cheia!");
@@ -67,10 +67,11 @@ public class ListaLinear {
         }
         size--;
     }
-    public int search(Exame n) {
+    public int search(T n) {
         for(int i =0; i<size; i++){
             // se o nome q ta no vetor é igual ao parametro
-            if (A[i].nome.equals(n.nome)){
+            Exame e = (Exame) A[i];
+            if (e.equals(n)){
                 return i;
             }
             
@@ -81,9 +82,10 @@ public class ListaLinear {
         System.out.println("\nElementos da lista");
         System.out.println("=================");
         for (int i =0; i<size; i++){
-            System.out.println(A[1].abrev);
-            System.out.println(A[1].nome);
-            System.out.println(A[1].qtDias);
+            Exame e = (Exame) A[i];
+            System.out.println(e.abrev);
+            System.out.println(e.nome);
+            System.out.println(e.qtDias);
         }
     }
 }

@@ -1,12 +1,12 @@
 import java.io.*;
 
 public class Laboratorio {
-    ListaLinear listaExamesDisponiveis; // de exames
-    ListaLinear pedidosDia; // pacientes (nome, cpf...)
+    ListaLinear <Exame> listaExamesDisponiveis; // de exames
+    ListaLinear <PedidoExame> pedidosDia; // pacientes (nome, cpf...)
 
     public Laboratorio() {
-        listaExamesDisponiveis = new ListaLinear(150);
-        pedidosDia = new ListaLinear(100);
+        listaExamesDisponiveis = ListaLinear <Exame>(150);
+        pedidosDia = ListaLinear <PedidoExame>(100);
     }
     // throws Exception só funciona no mai, aqui usa try catch
     public void lerArquivo(){
