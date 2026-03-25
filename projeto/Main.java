@@ -16,8 +16,10 @@ public class Main {
 
             switch (opcao){
                 case 1:
+                    lerArquivo();
                     break;
                 case 2:
+                    adcionarPaciente();
                     break;
                 case 3:
                     break;

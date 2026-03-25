@@ -9,7 +9,11 @@ public class Laboratorio {
         pedidosDia = ListaLinear <PedidoExame>(100);
     }
 
-    //public adcionarPaciente(){}
+    //public adcionarPaciente(){
+        System.out.println("CPF:");
+        System.out.println("Nome:");
+        System.out.println("Abrev exames solicitados:");
+    }
 
 
 
