@@ -5,10 +5,20 @@ Stephanie Soares Dias Ra: 10223952
 */
 public class Main {
 
+    public void mostrarMenu(){
+        System.out.println("1. Carregar dados de exames.");
+        System.out.println("2. Novo paciente.");
+        System.out.println("3. Consultar paciente.");
+        System.out.println("4. Finalização dos Atendiemntos.");
+        System.out.println("5. Estatísticas.");
+        System.out.println("6. Sair.");
+    }
+
     public static void main (String [] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Laboratorio lab = new Laboratorio();
         int opcao;
+        static boolean carregarExames = false;
          
         do{
             mostrartMenu();
@@ -18,44 +28,55 @@ public class Main {
             switch (opcao){
                 case 1:
                     lab.lerArquivo();
+                    carregarExames = true;
                     break;
                 case 2:
+                    if (!carregarExames) {
+                        System.out.println("Carregue exames primeiro!");
+                        break;
+                    }
                     String nome, cpf;
+                    ArrayList<Exame> examesSolicitados;
                     System.out.println("NOME: ");
                     nome = sc.nextLine();
                     System.out.println("CPF: ");
                     cpf = sc.nextLine();
-                    lab.adcionarPaciente(nome,cpf);
+                    boolean maisExames;
+                    while (maisExames == true) {
+                        System.out.println("Abreviação Exames (XXX para sair):");
+                        abrev = sc.nextLine().toUpperCase();
+                        if (abrev == "XXX") {
+                            maisExames = false;
+                            break;
+                        }
+                        examesSolicitados.add(abrev);
+                        lab.adcionarPaciente(nome, cpf, examesSolicitados);
+                    }
                     break;
                 case 3:
+                    if (!carregarExames) {
+                        System.out.println("Carregue exames primeiro!");
+                        break;
+                    }
                     break;
                 case 4:
+                    if (!carregarExames) {
+                        System.out.println("Carregue exames primeiro!");
+                        break;
+                    }
                     break;
                 case 5:
+                    if (!carregarExames) {
+                        System.out.println("Carregue exames primeiro!");
+                        break;
+                    }
                     break;
                 case 6:
                     System.out.println("Aplicação encerrada!\n Integrantes: Laura Yaguiu e Stephanie Dias");
                     break;
 
             } while (opcao!= 6);
-        Scanner.close();
         }
-
-
-
-
-
-
-    }
-
-    public satic void mostrarMenu(){
-        System.out.println("1. Carregar dados de exames.");
-        System.out.println("2. Novo paciente.");
-        System.out.println("3. Consultar paciente.");
-        System.out.println("4. Finalização dos Atendiemntos.");
-        System.out.println("5. Estatísticas.");
-        System.out.println("6. Sair.");
-
-
+        //sc.close();
     }
 }

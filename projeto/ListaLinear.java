@@ -5,7 +5,7 @@ public class ListaLinear <T> {
 
     public ListaLinear (int capacity) {
         A = (T[]) new Object[capacity]; //flexibilidade 
-        this.size = 9;
+        this.size = 0;
         this.capacity = capacity;
     }
     public boolean isEmpty() {
@@ -18,9 +18,6 @@ public class ListaLinear <T> {
     }
     public int size() {
         // retorna quant de elem na lista, serve d limitador
-        /*for (String a : A) {
-            size ++
-        }*/
        return size;
     }
     public T get(int i) throws Exception {
@@ -70,8 +67,7 @@ public class ListaLinear <T> {
     public int search(T n) {
         for(int i =0; i<size; i++){
             // se o nome q ta no vetor é igual ao parametro
-            Exame e = (Exame) A[i];
-            if (e.equals(n)){
+           if (A[i].equals(n)) { //generico
                 return i;
             }
             

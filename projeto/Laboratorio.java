@@ -4,16 +4,19 @@ import java.time.LocalDate;
 public class Laboratorio {
     ListaLinear <Exame> listaExamesDisponiveis; // de exames
     ListaLinear <PedidoExame> pedidosDia; // pacientes (nome, cpf...)
+    List<Exame> examesSolicitados;
 
     public Laboratorio() {
         listaExamesDisponiveis = ListaLinear <Exame>(150);
         pedidosDia = ListaLinear <PedidoExame>(100);
+        List<Exame> examesSolicitados = new ArrayList<>();
     }
 
     
-    public adcionarPaciente(String nome, String cpf){
+    public adcionarPaciente(String nome, String cpf, ArryList<Exame> examesSolicitados){
         int cont;
         int num = 1;
+        
         PedidoExame p1 = new PedidoExame(nome,cpf);
         pedidosDia.add(p1);
         System.out.print("CPF: ");
