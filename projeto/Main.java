@@ -17,6 +17,7 @@ public class Main {
 
             switch (opcao){
                 case 1:
+                    lab.lerArquivo();
                     break;
                 case 2:
                     String nome, cpf;
