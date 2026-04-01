@@ -1,36 +1,54 @@
 import java.io.*;
 import java.time.LocalDate;
+import java.util.*;
 
 public class Laboratorio {
-    ListaLinear <Exame> listaExamesDisponiveis; // de exames
-    ListaLinear <PedidoExame> pedidosDia; // pacientes (nome, cpf...)
-    List<Exame> examesSolicitados;
+    ListaLinear<Exame> listaExamesDisponiveis;
+    ListaLinear<PedidoExame> pedidosDia;
 
     public Laboratorio() {
-        listaExamesDisponiveis = ListaLinear <Exame>(150);
-        pedidosDia = ListaLinear <PedidoExame>(100);
-        List<Exame> examesSolicitados = new ArrayList<>();
+        listaExamesDisponiveis = new ListaLinear<Exame>(150);
+        pedidosDia = new ListaLinear<PedidoExame>(100);
     }
 
-    
-    public adcionarPaciente(String nome, String cpf, ArryList<Exame> examesSolicitados){
-        int cont;
-        int num = 1;
-        
-        PedidoExame p1 = new PedidoExame(nome,cpf);
-        pedidosDia.add(p1);
-        System.out.print("CPF: ");
-        System.out.println("\nNOME: ");
-        for(int i; i<exames.size();i++){
-            System.out.print("EXAME " + num + ":" + exames[i]+ );
-            num++;
-        }
-        dataRealz = LocalDate.now();
-        dataEntreg = dataRealz.plusDays(maiorQtdDias);
-        System.out.println("\nOs exames estarão disponiveís no dia" + dataEntrega +" a partir das 17h.")
-        
+    public void adcionarPaciente(String nome, String cpf, ArrayList<Exame> examesSolicitados) {
 
-        
+        int cont = 1;
+        int qtDiasMaior = 0;
+
+        System.out.println("CPF: " + cpf);
+        System.out.println("NOME: " + nome);
+
+        for (int i = 0; i < examesSolicitados.size(); i++) {
+            Exame e = examesSolicitados.get(i);
+
+            if (e.qtDias > qtDiasMaior) {
+                qtDiasMaior = e.qtDias;
+            }
+
+            System.out.println("EXAME " + cont + ": " + e);
+            cont++;
+        }
+
+        LocalDate dataRealz = LocalDate.now();
+        LocalDate dataEntrega = dataRealz.plusDays(qtDiasMaior);
+
+        System.out.println("Os exames estarão disponíveis no dia " + dataEntrega + " a partir das 17h.");
+    }
+
+    public Exame buscarExame(String abrev) {
+        for (int i = 0; i < listaExamesDisponiveis.size(); i++) {
+            try {
+                 Exame e = listaExamesDisponiveis.get(i);
+
+                if (e.abrev.equalsIgnoreCase(abrev)) {
+                    return e;
+                }
+            }catch (Exception e) {
+                System.out.println("erro");
+            }
+        }
+        return null;
     }
 
 
@@ -68,7 +86,7 @@ public class Laboratorio {
             arq.close();
         }
         catch(Exception e) {
-            System.out.println("Erro")
+            System.out.println("Erro");
         }
         
     }

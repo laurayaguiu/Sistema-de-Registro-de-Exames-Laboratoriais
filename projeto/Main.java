@@ -5,7 +5,7 @@ Stephanie Soares Dias Ra: 10223952
 */
 public class Main {
 
-    public void mostrarMenu(){
+    public static void mostrarMenu(){
         System.out.println("1. Carregar dados de exames.");
         System.out.println("2. Novo paciente.");
         System.out.println("3. Consultar paciente.");
@@ -14,14 +14,16 @@ public class Main {
         System.out.println("6. Sair.");
     }
 
+
+
     public static void main (String [] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Laboratorio lab = new Laboratorio();
         int opcao;
-        static boolean carregarExames = false;
+        boolean carregarExames = false;
          
-        do{
-            mostrartMenu();
+        do {
+            mostrarMenu();
             System.out.println("Qual opção você deseja acessar?");
             opcao = sc.nextInt();
 
@@ -35,23 +37,36 @@ public class Main {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
+
                     String nome, cpf;
-                    ArrayList<Exame> examesSolicitados;
+                    ArrayList<Exame> examesSolicitados = new ArrayList<>();
+
                     System.out.println("NOME: ");
                     nome = sc.nextLine();
+
                     System.out.println("CPF: ");
                     cpf = sc.nextLine();
-                    boolean maisExames;
-                    while (maisExames == true) {
+
+                    boolean maisExames = true;
+
+                    while (maisExames) {
                         System.out.println("Abreviação Exames (XXX para sair):");
-                        abrev = sc.nextLine().toUpperCase();
-                        if (abrev == "XXX") {
-                            maisExames = false;
+                        String abrev = sc.nextLine().toUpperCase();
+
+                        if (abrev.equals("XXX")) {
                             break;
                         }
-                        examesSolicitados.add(abrev);
-                        lab.adcionarPaciente(nome, cpf, examesSolicitados);
+
+                        Exame e = lab.buscarExame(abrev);
+
+                        if (e != null) {
+                            examesSolicitados.add(e);
+                        } else {
+                            System.out.println("Exame não encontrado!");
+                        }
                     }
+
+                    lab.adcionarPaciente(nome, cpf, examesSolicitados);
                     break;
                 case 3:
                     if (!carregarExames) {
@@ -75,8 +90,8 @@ public class Main {
                     System.out.println("Aplicação encerrada!\n Integrantes: Laura Yaguiu e Stephanie Dias");
                     break;
 
-            } while (opcao!= 6);
-        }
+            } 
+        } while (opcao!= 6);
         //sc.close();
     }
 }

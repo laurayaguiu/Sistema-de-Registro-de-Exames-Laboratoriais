@@ -18,5 +18,9 @@ public class Exame {
         return this.abrev.equals(outro.abrev);
     }
 
+    public String toString(){
+        return String.format("%s - %s - %d dias", abrev, nome, qtDias);
+    }
+
     
 }
