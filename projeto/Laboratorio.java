@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 
 public class Laboratorio {
     ListaLinear <Exame> listaExamesDisponiveis; // de exames
@@ -9,7 +10,24 @@ public class Laboratorio {
         pedidosDia = ListaLinear <PedidoExame>(100);
     }
 
-    //public adcionarPaciente(){}
+    public adcionarPaciente(String nome, String cpf){
+        int cont;
+        int num = 1;
+        PedidoExame p1 = new PedidoExame(nome,cpf);
+        pedidosDia.add(p1);
+        System.out.print("CPF: ");
+        System.out.println("\nNOME: ");
+        for(int i; i<exames.size();i++){
+            System.out.print("EXAME " + num + ":" + exames[i]+ );
+            num++;
+        }
+        dataRealz = LocalDate.now();
+        dataEntreg = dataRealz.plusDays(maiorQtdDias);
+        System.out.println("\nOs exames estarão disponiveís no dia" + dataEntrega +" a partir das 17h.")
+        
+
+        
+    }
 
 
 
