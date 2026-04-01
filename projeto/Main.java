@@ -17,8 +17,15 @@ public class Main {
 
             switch (opcao){
                 case 1:
+                    lab.lerArquivo();
                     break;
                 case 2:
+                    String nome, cpf;
+                    System.out.println("NOME: ");
+                    nome = sc.nextLine();
+                    System.out.println("CPF: ");
+                    cpf = sc.nextLine();
+                    lab.adcionarPaciente(nome,cpf);
                     break;
                 case 3:
                     break;
