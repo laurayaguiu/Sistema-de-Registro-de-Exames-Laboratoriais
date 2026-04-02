@@ -11,7 +11,7 @@ public class Laboratorio {
         pedidosDia = new ListaLinear<PedidoExame>(100);
     }
 
-    public void adcionarPaciente(String nome, String cpf, ArrayList<Exame> examesSolicitados) {
+    public void adcionarPaciente(String cpf, String nome, ArrayList<Exame> examesSolicitados) {
 
         int cont = 1;
         int qtDiasMaior = 0;
@@ -34,14 +34,22 @@ public class Laboratorio {
         LocalDate dataEntrega = dataRealz.plusDays(qtDiasMaior);
 
         System.out.println("Os exames estarão disponíveis no dia " + dataEntrega + " a partir das 17h.");
+
+        int contPedido = 0;
+        try {
+            PedidoExame pE = new PedidoExame(cpf, nome, dataRealz, dataEntrega, examesSolicitados);
+            pedidosDia.add(contPedido, pE);
+            contPedido++;
+        }catch (Exception e){
+            System.out.println("Erro");
+        }
     }
 
     public Exame buscarExame(String abrev) {
         for (int i = 0; i < listaExamesDisponiveis.size(); i++) {
             try {
-                 Exame e = listaExamesDisponiveis.get(i);
-
-                if (e.abrev.equalsIgnoreCase(abrev)) {
+                Exame e = listaExamesDisponiveis.get(i);
+                if (e.abrev.equals(abrev)) {
                     return e;
                 }
             }catch (Exception e) {
@@ -51,7 +59,23 @@ public class Laboratorio {
         return null;
     }
 
+    public PedidoExame procurarPaciente(String cpf){
+        for (int i = 0; i<pedidosDia.size(); i++) {
+            try {
+                PedidoExame e = pedidosDia.get(i);
+                if (e.cpf.equals(cpf)) {
+                    return e;
+                } 
+            } catch (Exception e) {
+                    System.out.println("erro");
+                }
+        }
+        return null;
+    }
 
+    public void consultarPaciente (PedidoExame e) {
+        e.mostrarPedido();
+    }
 
     // throws Exception só funciona no mai, aqui usa try catch
     public void lerArquivo(){

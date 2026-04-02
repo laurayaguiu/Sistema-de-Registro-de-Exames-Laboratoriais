@@ -3,16 +3,24 @@ import java.time.*;
 
 public class PedidoExame {
     String cpf;
-    String nomeP;
+    String nome;
     LocalDate dataRealz;
     LocalDate dataEntreg;
-    ArrayList<String> exames; 
+    ArrayList<Exame> examesSolicitados; 
 
-    public PedidoExame(String cpf, String nomeP, LocalDate dataRealz, LocalDate dataEntreg) {
+    public PedidoExame(String cpf, String nome, LocalDate dataRealz, LocalDate dataEntreg, ArrayList<Exame> examesSolicitados) {
         this.cpf = cpf;
-        this.nomeP = nomeP;
+        this.nome = nome;
         this.dataRealz = dataRealz;
         this.dataEntreg = dataEntreg;
-        exames = new ArrayList<String>();
+        this.examesSolicitados = new ArrayList<Exame>();
+    }
+
+    public void mostrarPedido(){
+        System.out.println("CPF: " +cpf+ "\nNOME: " + nome + " DATA REALIZAÇÃO: " + dataRealz);
+        for (Exame e : examesSolicitados) {
+            System.out.println(e.toString());
+        }
+        System.out.println("DATA LIBERAÇÃO RESULTADOS: " + dataEntreg);
     }
 }

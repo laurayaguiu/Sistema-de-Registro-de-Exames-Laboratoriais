@@ -21,6 +21,8 @@ public class Main {
         Laboratorio lab = new Laboratorio();
         int opcao;
         boolean carregarExames = false;
+        String cpf;
+        String nome;
          
         do {
             mostrarMenu();
@@ -37,15 +39,13 @@ public class Main {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
-
-                    String nome, cpf;
                     ArrayList<Exame> examesSolicitados = new ArrayList<>();
-
-                    System.out.println("NOME: ");
-                    nome = sc.nextLine();
-
-                    System.out.println("CPF: ");
+                    sc.nextLine(); 
+                    System.out.print("CPF: ");
                     cpf = sc.nextLine();
+
+                    System.out.print("NOME: ");
+                    nome = sc.nextLine();
 
                     boolean maisExames = true;
 
@@ -65,14 +65,23 @@ public class Main {
                             System.out.println("Exame não encontrado!");
                         }
                     }
-
-                    lab.adcionarPaciente(nome, cpf, examesSolicitados);
+                    lab.adcionarPaciente(cpf, nome, examesSolicitados);
                     break;
                 case 3:
                     if (!carregarExames) {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
+                    sc.nextLine(); 
+                    System.out.println("Informe CPF de consulta:");
+                    cpf = sc.nextLine();
+
+                    PedidoExame e = lab.procurarPaciente(cpf);
+                    if (e != null) {
+                            lab.consultarPaciente(e);
+                        } else {
+                            System.out.println("Paciente não encontrado!");
+                        }
                     break;
                 case 4:
                     if (!carregarExames) {
