@@ -13,13 +13,16 @@ public class PedidoExame {
         this.nome = nome;
         this.dataRealz = dataRealz;
         this.dataEntreg = dataEntreg;
-        this.examesSolicitados = new ArrayList<Exame>();
+        this.examesSolicitados =  examesSolicitados;
+        //antes this.examesSolicitados =new ArrayList<>(); tava ignorando a lista q criei e printando uma vazia
     }
 
     public void mostrarPedido(){
-        System.out.println("CPF: " +cpf+ "\nNOME: " + nome + " DATA REALIZAÇÃO: " + dataRealz);
+        int cont = 1;
+        System.out.println("CPF: " +cpf+ "\nNOME: " + nome + "   DATA REALIZAÇÃO: " + dataRealz);
         for (Exame e : examesSolicitados) {
-            System.out.println(e.toString());
+            System.out.println("EXAME " + cont + " :" + e.toString());
+            cont++;
         }
         System.out.println("DATA LIBERAÇÃO RESULTADOS: " + dataEntreg);
     }
