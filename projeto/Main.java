@@ -21,6 +21,7 @@ public class Main {
         Laboratorio lab = new Laboratorio();
         int opcao;
         boolean carregarExames = false;
+        boolean carregarEstatisticas = false;
         String cpf;
         String nome;
          
@@ -31,14 +32,27 @@ public class Main {
 
             switch (opcao){
                 case 1:
+                    // caso 4 já tenha sido ativado, apenas op 5 e 6 disponível
+                    if (carregarEstatisticas == true) {
+                        System.out.println("Apenas opções 5 e 6 disponíveis!");
+                        break;
+                    }
                     lab.lerArquivo();
                     carregarExames = true;
+                    System.out.println("Dados dos exames carregados com sucesso!");
                     break;
                 case 2:
+                    //caso op 1 nao tenha sido ativada
                     if (!carregarExames) {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
+                    // caso 4 já tenha sido ativado, apenas op 5 e 6 disponível
+                    if (carregarEstatisticas == true) {
+                        System.out.println("Apenas opções 5 e 6 disponíveis!");
+                        break;
+                    }
+                   
                     ArrayList<Exame> examesSolicitados = new ArrayList<>();
                     sc.nextLine(); 
                     System.out.print("CPF: ");
@@ -66,12 +80,20 @@ public class Main {
                         }
                     }
                     lab.adcionarPaciente(cpf, nome, examesSolicitados);
+                    
                     break;
                 case 3:
+                    //caso op 1 nao tenha sido ativada
                     if (!carregarExames) {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
+                    // caso 4 já tenha sido ativado, apenas op 5 e 6 disponível
+                    if (carregarEstatisticas == true) {
+                        System.out.println("Apenas opções 5 e 6 disponíveis!");
+                        break;
+                    }
+                    
                     sc.nextLine(); 
                     System.out.println("Informe CPF de consulta:");
                     cpf = sc.nextLine();
@@ -84,19 +106,25 @@ public class Main {
                         }
                     break;
                 case 4:
+                    //caso op 1 nao tenha sido ativada
                     if (!carregarExames) {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
+                    carregarEstatisticas = true;
+                    //gravar todos os objetos do vetor PedidoExames em um arquivo texto;
+                    // EX: 11122233345;SOLANGE BARROS;13/03/2026;20/03/2026;TSH;URE;GLI
+                    //Após a execução dessa opção, a única possibilidade de acesso ao sistema, passam a ser as opções 5 e 6
                     break;
                 case 5:
+                    //caso op 1 nao tenha sido ativada
                     if (!carregarExames) {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
-                    break;
+                    // nossa escolha
                 case 6:
-                    System.out.println("Aplicação encerrada!\n Integrantes: Laura Yaguiu e Stephanie Dias");
+                    System.out.println("Aplicação encerrada!\nIntegrantes: Laura Yaguiu e Stephanie Dias");
                     break;
 
             } 
