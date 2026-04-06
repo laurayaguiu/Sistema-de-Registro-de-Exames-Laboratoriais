@@ -4,6 +4,7 @@ Laura Rocha Yaguiu RA: 10736399
 Stephanie Soares Dias Ra: 10223952
 */
 public class Main {
+    boolean finalizado = false;
 
     public static void mostrarMenu(){
         System.out.println("1. Carregar dados de exames.");
@@ -106,23 +107,24 @@ public class Main {
                         }
                     break;
                 case 4:
-                    //caso op 1 nao tenha sido ativada
                     if (!carregarExames) {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
+
+                    lab.finalizarAtendimentos(); 
+
                     carregarEstatisticas = true;
-                    //gravar todos os objetos do vetor PedidoExames em um arquivo texto;
-                    // EX: 11122233345;SOLANGE BARROS;13/03/2026;20/03/2026;TSH;URE;GLI
-                    //Após a execução dessa opção, a única possibilidade de acesso ao sistema, passam a ser as opções 5 e 6
+                    System.out.println("Atendimentos finalizados e arquivo gerado!");
                     break;
                 case 5:
-                    //caso op 1 nao tenha sido ativada
                     if (!carregarExames) {
                         System.out.println("Carregue exames primeiro!");
                         break;
                     }
-                    // nossa escolha
+
+                    lab.verEstatisticas();
+                    break;
                 case 6:
                     System.out.println("Aplicação encerrada!\nIntegrantes: Laura Yaguiu e Stephanie Dias");
                     break;

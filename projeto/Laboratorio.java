@@ -77,6 +77,106 @@ public class Laboratorio {
         e.mostrarPedido();
     }
 
+    public void finalizarAtendimentos() {
+        try {
+        
+            LocalDate hoje = LocalDate.now();
+            //nome arquivo com data atual
+            String nomeArquivo = hoje.toString().replace("-", "") + ".txt";
+
+            //criando arquivo do dia
+            FileWriter fw = new FileWriter(nomeArquivo);
+            BufferedWriter wrt = new BufferedWriter(fw);
+
+            // pega paciente
+            for (int i = 0; i < pedidosDia.size(); i++) {
+                PedidoExame p = pedidosDia.get(i);
+                // formato da linha
+                String linha = p.cpf + ";" +
+                            p.nome + ";" +
+                            p.dataRealz + ";" +
+                            p.dataEntreg;
+
+                    //adciona na linha
+                for (int j = 0; j < p.examesSolicitados.size(); j++) {
+                    linha += ";" + p.examesSolicitados.get(j).abrev;
+                }
+
+        
+                wrt.write(linha);
+                wrt.newLine();
+            }
+
+            wrt.close();
+            System.out.println("Arquivo gerado com sucesso!");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao gerar arquivo");
+        }
+    }   
+
+    public void verEstatisticas() {
+        // qnts vezes os exame aparece
+        int[] contagem = new int[listaExamesDisponiveis.size()];
+        // contador exames
+        int totalExames = 0;
+
+        try {
+        
+            for (int i = 0; i < pedidosDia.size(); i++) {
+                PedidoExame p = pedidosDia.get(i);
+
+                // soma exames do paciente
+                totalExames += p.examesSolicitados.size();
+
+                // percorre exames
+                for (int j = 0; j < p.examesSolicitados.size(); j++) {
+                    Exame ex = p.examesSolicitados.get(j);
+
+                    for (int k = 0; k < listaExamesDisponiveis.size(); k++) {
+                        Exame exLista = listaExamesDisponiveis.get(k);
+
+                        if (exLista.abrev.equals(ex.abrev)) {
+                            contagem[k]++;
+                        }
+                    }
+                }
+            }
+
+            int totalPacientes = pedidosDia.size();
+
+        
+            double media = 0;
+            if (totalPacientes > 0) {
+                media = (double) totalExames / totalPacientes;
+            }
+
+            System.out.println("=== ESTATÍSTICAS ===");
+
+            for (int i = 0; i < listaExamesDisponiveis.size(); i++) {
+                Exame ex = listaExamesDisponiveis.get(i);
+
+                if (contagem[i] > 0) {
+                    double percentual = (double) contagem[i] / totalExames * 100;
+
+                    System.out.printf(
+                        "%s - %s: %d vezes (%.2f%%) dos Exames Solicitados.\n",
+                        ex.abrev,
+                        ex.nome,
+                        contagem[i],
+                        percentual
+                    );
+                }
+            }
+
+
+            System.out.printf("\nMédia de exames por paciente: %.2f\n", media);
+
+        } catch (Exception e) {
+            System.out.println("Erro ao calcular estatísticas");
+        }
+    }
+    
     // throws Exception só funciona no mai, aqui usa try catch
     public void lerArquivo(){
         try {
