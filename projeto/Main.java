@@ -6,15 +6,7 @@ Stephanie Soares Dias Ra: 10223952
 public class Main {
     boolean finalizado = false;
 
-    public static void mostrarMenu(){
-        System.out.println("1. Carregar dados de exames.");
-        System.out.println("2. Novo paciente.");
-        System.out.println("3. Consultar paciente.");
-        System.out.println("4. Finalização dos Atendiemntos.");
-        System.out.println("5. Estatísticas.");
-        System.out.println("6. Sair.");
-    }
-
+    
 
 
     public static void main (String [] args) throws Exception {
@@ -27,7 +19,7 @@ public class Main {
         String nome;
          
         do {
-            mostrarMenu();
+            lab.mostrarMenu();
             System.out.println("Qual opção você deseja acessar?");
             opcao = sc.nextInt();
 
@@ -80,7 +72,7 @@ public class Main {
                             System.out.println("Exame não encontrado!");
                         }
                     }
-                    lab.adcionarPaciente(cpf, nome, examesSolicitados);
+                    lab.adicionarPaciente(cpf, nome, examesSolicitados);
                     
                     break;
                 case 3:

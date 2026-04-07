@@ -11,7 +11,16 @@ public class Laboratorio {
         pedidosDia = new ListaLinear<PedidoExame>(100);
     }
 
-    public void adcionarPaciente(String cpf, String nome, ArrayList<Exame> examesSolicitados) {
+     public static void mostrarMenu(){
+        System.out.println("1. Carregar dados de exames.");
+        System.out.println("2. Novo paciente.");
+        System.out.println("3. Consultar paciente.");
+        System.out.println("4. Finalização dos Atendiemntos.");
+        System.out.println("5. Estatísticas.");
+        System.out.println("6. Sair.");
+    }
+        
+    public void adicionarPaciente(String cpf, String nome, ArrayList<Exame> examesSolicitados) {
 
         int cont = 1;
         int qtDiasMaior = 0;
@@ -35,16 +44,15 @@ public class Laboratorio {
 
         System.out.println("Os exames estarão disponíveis no dia " + dataEntrega + " a partir das 17h.");
 
-        int contPedido = 0;
+       // int contPedido = 0;
         try {
             PedidoExame pE = new PedidoExame(cpf, nome, dataRealz, dataEntrega, examesSolicitados);
-            pedidosDia.add(contPedido, pE);
-            contPedido++;
+            pedidosDia.add(pedidosDia.size(), pE);//pedidosDia.add(contPedido, pE);
+            //contPedido++;
         }catch (Exception e){
-            System.out.println("Erro");
+            System.out.println("Erro: " + e.getMessage());;
         }
     }
-
     public Exame buscarExame(String abrev) {
         for (int i = 0; i < listaExamesDisponiveis.size(); i++) {
             try {
