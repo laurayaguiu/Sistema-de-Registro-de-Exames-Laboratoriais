@@ -122,20 +122,15 @@ public class Laboratorio {
         int totalExames = 0;
 
         try {
-        
             for (int i = 0; i < pedidosDia.size(); i++) {
                 PedidoExame p = pedidosDia.get(i);
-
                 // soma exames do paciente
                 totalExames += p.examesSolicitados.size();
-
                 // percorre exames
                 for (int j = 0; j < p.examesSolicitados.size(); j++) {
                     Exame ex = p.examesSolicitados.get(j);
-
                     for (int k = 0; k < listaExamesDisponiveis.size(); k++) {
                         Exame exLista = listaExamesDisponiveis.get(k);
-
                         if (exLista.abrev.equals(ex.abrev)) {
                             contagem[k]++;
                         }
@@ -144,8 +139,6 @@ public class Laboratorio {
             }
 
             int totalPacientes = pedidosDia.size();
-
-        
             double media = 0;
             if (totalPacientes > 0) {
                 media = (double) totalExames / totalPacientes;
@@ -155,10 +148,8 @@ public class Laboratorio {
 
             for (int i = 0; i < listaExamesDisponiveis.size(); i++) {
                 Exame ex = listaExamesDisponiveis.get(i);
-
                 if (contagem[i] > 0) {
                     double percentual = (double) contagem[i] / totalExames * 100;
-
                     System.out.printf(
                         "%s - %s: %d vezes (%.2f%%) dos Exames Solicitados.\n",
                         ex.abrev,
