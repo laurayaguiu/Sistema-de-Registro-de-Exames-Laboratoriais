@@ -50,7 +50,7 @@ public class Laboratorio {
             pedidosDia.add(pedidosDia.size(), pE);//pedidosDia.add(contPedido, pE);
             //contPedido++;
         }catch (Exception e){
-            System.out.println("Erro: " + e.getMessage());;
+            System.out.println("Erro: " + e.getMessage());
         }
     }
     public Exame buscarExame(String abrev) {
@@ -61,7 +61,7 @@ public class Laboratorio {
                     return e;
                 }
             }catch (Exception e) {
-                System.out.println("erro");
+                System.out.println("Erro: " + e.getMessage());
             }
         }
         return null;
@@ -75,7 +75,7 @@ public class Laboratorio {
                     return e;
                 } 
             } catch (Exception e) {
-                    System.out.println("erro");
+                    System.out.println("Erro ao encontrar paciente: " + e.getMessage());
                 }
         }
         return null;
@@ -118,7 +118,7 @@ public class Laboratorio {
             System.out.println("Arquivo gerado com sucesso!");
 
         } catch (Exception e) { // exception mais especifica
-            System.out.println("Erro ao gerar arquivo");
+            System.out.println("Erro ao gerar arquivo: " + e.getMessage());
         }
     }   
 
@@ -180,7 +180,7 @@ public class Laboratorio {
             System.out.printf("\nMédia de exames por paciente: %.2f\n", media);
 
         } catch (Exception e) {
-            System.out.println("Erro ao calcular estatísticas");
+            System.out.println("Erro ao calcular estatísticas: " + e.getMessage());
         }
     }
     
@@ -217,7 +217,7 @@ public class Laboratorio {
             arq.close();
         }
         catch(Exception e) {
-            System.out.println("Erro");
+            System.out.println("Erro na leitura do arquivo: " + e.getMessage());
         }
         
     }

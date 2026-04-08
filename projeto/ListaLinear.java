@@ -65,8 +65,8 @@ public class ListaLinear <T> {
         size--;
     }
     public int search(T n) {
-        for(int i =0; i<size; i++){
-            // se o nome q ta no vetor é igual ao parametro
+       for(int i =0; i<size; i++){
+        // se o nome q ta no vetor é igual ao parametro
            if (A[i].equals(n)) { //generico
                 return i;
             }
@@ -74,7 +74,7 @@ public class ListaLinear <T> {
         }
         return -1;
     }
-    public void mostrarLista() {
+    /*public void mostrarLista() {
         System.out.println("\nElementos da lista");
         System.out.println("=================");
         for (int i =0; i<size; i++){
@@ -83,5 +83,5 @@ public class ListaLinear <T> {
             System.out.println(e.nome);
             System.out.println(e.qtDias);
         }
-    }
+    }*/
 }
