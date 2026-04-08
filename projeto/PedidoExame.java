@@ -19,11 +19,11 @@ public class PedidoExame {
 
     public void mostrarPedido(){
         int cont = 1;
-        System.out.println("CPF: " +cpf+ "\nNOME: " + nome + "   DATA REALIZAÇÃO: " + dataRealz);
+        System.out.println("CPF: " +cpf+ "\nNOME: " + nome + "   DATA REALIZAÇÃO: " + dataRealz.toString().replace("-", "/"));
         for (Exame e : examesSolicitados) {
             System.out.println("EXAME " + cont + " :" + e.toString());
             cont++;
         }
-        System.out.println("DATA LIBERAÇÃO RESULTADOS: " + dataEntreg);
+        System.out.println("DATA LIBERAÇÃO RESULTADOS: " + dataEntreg.toString().replace("-", "/"));
     }
 }

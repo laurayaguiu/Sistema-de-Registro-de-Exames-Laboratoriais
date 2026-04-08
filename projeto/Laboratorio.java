@@ -42,7 +42,7 @@ public class Laboratorio {
         LocalDate dataRealz = LocalDate.now();
         LocalDate dataEntrega = dataRealz.plusDays(qtDiasMaior);
 
-        System.out.println("Os exames estarão disponíveis no dia " + dataEntrega + " a partir das 17h.");
+        System.out.println("Os exames estarão disponíveis no dia " + dataEntrega.toString().replace("-", "/") + " a partir das 17h.");
 
        // int contPedido = 0;
         try {
@@ -90,57 +90,65 @@ public class Laboratorio {
         
             LocalDate hoje = LocalDate.now();
             //nome arquivo com data atual
-            String nomeArquivo = hoje.toString().replace("-", "") + ".txt";
+            String nomeArquivo = hoje.toString().replace("-", "") + ".txt"; //remove os hifens
 
             //criando arquivo do dia
             FileWriter fw = new FileWriter(nomeArquivo);
             BufferedWriter wrt = new BufferedWriter(fw);
 
-            // pega paciente
-            for (int i = 0; i < pedidosDia.size(); i++) {
-                PedidoExame p = pedidosDia.get(i);
+            
+            for (int i = 0; i < pedidosDia.size(); i++) { // percorre tds pacientes do dia
+                
+                PedidoExame p = pedidosDia.get(i); // p recebe paciente pos i
+               
                 // formato da linha
-                String linha = p.cpf + ";" +
-                            p.nome + ";" +
-                            p.dataRealz + ";" +
-                            p.dataEntreg;
+                String linha = p.cpf + ";" +p.nome + ";" +p.dataRealz.toString().replace("-", "/") + ";" +p.dataEntreg.toString().replace("-", "/");
 
                     //adciona na linha
-                for (int j = 0; j < p.examesSolicitados.size(); j++) {
-                    linha += ";" + p.examesSolicitados.get(j).abrev;
+                for (int j = 0; j < p.examesSolicitados.size(); j++) { // percorre tds exames do paciente
+                    linha += ";" + p.examesSolicitados.get(j).abrev; //+ abrev
                 }
 
         
-                wrt.write(linha);
+                wrt.write(linha);// escreve a linha no arquivo
                 wrt.newLine();
             }
 
             wrt.close();
             System.out.println("Arquivo gerado com sucesso!");
 
-        } catch (Exception e) {
+        } catch (Exception e) { // exception mais especifica
             System.out.println("Erro ao gerar arquivo");
         }
     }   
 
     public void verEstatisticas() {
         // qnts vezes os exame aparece
-        int[] contagem = new int[listaExamesDisponiveis.size()];
+        int[] contagem = new int[listaExamesDisponiveis.size()];// vetor para contar exames
         // contador exames
         int totalExames = 0;
 
         try {
-            for (int i = 0; i < pedidosDia.size(); i++) {
-                PedidoExame p = pedidosDia.get(i);
-                // soma exames do paciente
-                totalExames += p.examesSolicitados.size();
+            for (int i = 0; i < pedidosDia.size(); i++) { // percorre pacientes
+                
+                PedidoExame p = pedidosDia.get(i); // p = paciente
+                
+                
                 // percorre exames
-                for (int j = 0; j < p.examesSolicitados.size(); j++) {
+                for (int j = 0; j < p.examesSolicitados.size(); j++) { // percorre exames do paciente i
+                    
+                    totalExames++;// conta q esse exame foi solicitado por um paciente
+                    
                     Exame ex = p.examesSolicitados.get(j);
-                    for (int k = 0; k < listaExamesDisponiveis.size(); k++) {
-                        Exame exLista = listaExamesDisponiveis.get(k);
-                        if (exLista.abrev.equals(ex.abrev)) {
-                            contagem[k]++;
+
+                    String abrev = listaExamesDisponiveis.get(j).abrev;
+                    
+                    for (int k = 0; k < listaExamesDisponiveis.size(); k++) { // correspondencia abrev
+                        
+                        
+                        if (listaExamesDisponiveis.get(k).abrev.equals(abrev)) {
+                            contagem[k]++; // conta q esse exame foi solicitado por um paciente
+                            break; // achou parou                        
                         }
                     }
                 }
@@ -155,16 +163,16 @@ public class Laboratorio {
             System.out.println("=== ESTATÍSTICAS ===");
 
             for (int i = 0; i < listaExamesDisponiveis.size(); i++) {
+                
                 Exame ex = listaExamesDisponiveis.get(i);
+                
                 if (contagem[i] > 0) {
+                    
                     double percentual = (double) contagem[i] / totalExames * 100;
+                    
                     System.out.printf(
                         "%s - %s: %d vezes (%.2f%%) dos Exames Solicitados.\n",
-                        ex.abrev,
-                        ex.nome,
-                        contagem[i],
-                        percentual
-                    );
+                        ex.abrev,ex.nome,contagem[i],percentual);
                 }
             }
 
