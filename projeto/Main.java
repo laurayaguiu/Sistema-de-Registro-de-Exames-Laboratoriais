@@ -1,12 +1,11 @@
 import java.util.*;
 
 public class Main {
-    boolean finalizado = false;
-
     public static void main (String [] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Laboratorio lab = new Laboratorio();
         int opcao;
+        boolean finalizado = false;
         boolean carregarExames = false;
         boolean carregarEstatisticas = false;
         String cpf;
