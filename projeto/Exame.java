@@ -10,6 +10,7 @@ public class Exame {
     }
 
     //Override comportamento padrão herdado da classe Object
+    /*
     @Override 
     public boolean equals(Object obj) {
         if (this==obj) return true;
@@ -17,7 +18,7 @@ public class Exame {
 
         Exame outro = (Exame) obj;
         return this.abrev.equals(outro.abrev);
-    }
+    }*/
 
     @Override
     public String toString(){

@@ -28,3 +28,7 @@
 
 ## Objetivo acadêmico
 - Projeto desenvolvido na diciplina de Estrutura de Dados com foco em praticar : manipulação de arquivos, organização de código em Java e a lógica de programação aplicada a um problema real.
+
+## Autores
+- Laura Rocha Yaguiu
+- Stephanie Soares Dias

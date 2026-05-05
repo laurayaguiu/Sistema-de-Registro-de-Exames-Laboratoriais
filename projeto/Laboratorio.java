@@ -96,27 +96,27 @@ public class Laboratorio {
         
             LocalDate hoje = LocalDate.now();
             //nome arquivo com data atual
-            String nomeArquivo = hoje.toString().replace("-", "") + ".txt"; //remove os hifens
+            String nomeArquivo = hoje.toString().replace("-", "") + ".txt"; 
 
             //criando arquivo do dia
             FileWriter fw = new FileWriter(nomeArquivo);
             BufferedWriter wrt = new BufferedWriter(fw);
 
             
-            for (int i = 0; i < pedidosDia.size(); i++) { // percorre tds pacientes do dia
+            for (int i = 0; i < pedidosDia.size(); i++) {//percorre pacientes
                 
-                PedidoExame p = pedidosDia.get(i); // p recebe paciente pos i
+                PedidoExame p = pedidosDia.get(i); 
                
                 // formato da linha
                 String linha = p.cpf + ";" +p.nome + ";" +p.dataRealz.toString().replace("-", "/") + ";" +p.dataEntreg.toString().replace("-", "/");
 
-                    //adciona na linha
-                for (int j = 0; j < p.examesSolicitados.size(); j++) { // percorre tds exames do paciente
-                    linha += ";" + p.examesSolicitados.get(j).abrev; //+ abrev
+                    
+                for (int j = 0; j < p.examesSolicitados.size(); j++) { // percorre exames do paciente
+                    linha += ";" + p.examesSolicitados.get(j).abrev; 
                 }
 
         
-                wrt.write(linha);// escreve a linha no arquivo
+                wrt.write(linha);
                 wrt.newLine();
             }
 
@@ -129,29 +129,27 @@ public class Laboratorio {
     }   
 
     public void verEstatisticas() {
-        // qnts vezes os exame aparece
-        int[] contagem = new int[listaExamesDisponiveis.size()];// vetor para contar exames
-        // contador exames
+        // quantas vezes o exame aparece
+        int[] contagem = new int[listaExamesDisponiveis.size()];
         int totalExames = 0;
 
         try {
             for (int i = 0; i < pedidosDia.size(); i++) { // percorre pacientes
                 
-                PedidoExame p = pedidosDia.get(i); // p = paciente
+                PedidoExame p = pedidosDia.get(i); 
                 
                 
                 // percorre exames
-                for (int j = 0; j < p.examesSolicitados.size(); j++) { // percorre exames do paciente i
+                for (int j = 0; j < p.examesSolicitados.size(); j++) { 
                     
-                    totalExames++;// conta q esse exame foi solicitado por um paciente
+                    totalExames++;
                     
                     Exame ex = p.examesSolicitados.get(j);
 
-                    String abrev = listaExamesDisponiveis.get(j).abrev;
+                    //String abrev = listaExamesDisponiveis.get(j).abrev;
+                    String abrev = ex.abrev;
                     
                     for (int k = 0; k < listaExamesDisponiveis.size(); k++) { // correspondencia abrev
-                        
-                        
                         if (listaExamesDisponiveis.get(k).abrev.equals(abrev)) {
                             contagem[k]++; // conta q esse exame foi solicitado por um paciente
                             break; // achou parou                        
@@ -194,29 +192,20 @@ public class Laboratorio {
     public void lerArquivo(){
         try {
             FileReader arq = new FileReader("exames.txt");
-            BufferedReader linha = new BufferedReader(arq); // leitura linha a linha do txt
+            BufferedReader linha = new BufferedReader(arq); 
 
-            //ler a linha de cabeçalho txt mas nao mostrar
+            //ignora cabeçalho
             String aux = linha.readLine();
-
-            //ler a 1 linha (1 exame) e comecar a mostrar
             aux = linha.readLine();
 
-            int pos = 0; //contador
+            int pos = 0; 
 
-            //enquanto ainda tem exame para ler ou pelo menos 1
             while(aux != null) {
-                // sempre que encontrar uma virgula entende q é uma informacao
-                // separa dentro de vetor
+                // separa dentro de vetor sempre que encontra virgula
                 String[] dados = aux.split(",");
-
-                // cria obj do tipo exame
-                // integer.parseInt pq o vetor é do tipo string mas qtDias é int
                 Exame ex = new Exame(dados[0],dados[1],Integer.parseInt(dados[2]));
-                //precisa colocar ele dentro da lista examesdispo
                 listaExamesDisponiveis.add(pos,ex);
-                pos++; // sempre colocando em uma posicao na frente
-
+                pos++;
                 // proximo exame
                 aux = linha.readLine();
             }
