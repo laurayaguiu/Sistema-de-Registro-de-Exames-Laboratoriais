@@ -1,13 +1,7 @@
 import java.util.*;
-/*
-Laura Rocha Yaguiu RA: 10736399
-Stephanie Soares Dias Ra: 10223952
-*/
+
 public class Main {
     boolean finalizado = false;
-
-    
-
 
     public static void main (String [] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -107,7 +101,7 @@ public class Main {
                     lab.finalizarAtendimentos(); 
 
                     carregarEstatisticas = true;
-                    System.out.println("Atendimentos finalizados e arquivo gerado!");
+                    System.out.println("Atendimentos finalizados!");
                     break;
                 case 5:
                     if (!carregarExames) {
@@ -118,11 +112,11 @@ public class Main {
                     lab.verEstatisticas();
                     break;
                 case 6:
-                    System.out.println("Aplicação encerrada!\nIntegrantes: Laura Yaguiu e Stephanie Dias");
+                    System.out.println("Aplicação encerrada!");
                     break;
 
             } 
         } while (opcao!= 6);
-        //sc.close();
+        sc.close();
     }
 }

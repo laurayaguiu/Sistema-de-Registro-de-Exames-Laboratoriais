@@ -74,14 +74,5 @@ public class ListaLinear <T> {
         }
         return -1;
     }
-    /*public void mostrarLista() {
-        System.out.println("\nElementos da lista");
-        System.out.println("=================");
-        for (int i =0; i<size; i++){
-            Exame e = (Exame) A[i];
-            System.out.println(e.abrev);
-            System.out.println(e.nome);
-            System.out.println(e.qtDias);
-        }
-    }*/
+  
 }

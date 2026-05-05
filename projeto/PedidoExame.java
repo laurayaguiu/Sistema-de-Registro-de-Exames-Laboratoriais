@@ -14,7 +14,7 @@ public class PedidoExame {
         this.dataRealz = dataRealz;
         this.dataEntreg = dataEntreg;
         this.examesSolicitados =  examesSolicitados;
-        //antes this.examesSolicitados =new ArrayList<>(); tava ignorando a lista q criei e printando uma vazia
+        
     }
 
     public void mostrarPedido(){

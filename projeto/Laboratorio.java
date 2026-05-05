@@ -2,6 +2,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
+
 public class Laboratorio {
     ListaLinear<Exame> listaExamesDisponiveis;
     ListaLinear<PedidoExame> pedidosDia;
@@ -12,14 +13,17 @@ public class Laboratorio {
     }
 
      public static void mostrarMenu(){
-        System.out.println("1. Carregar dados de exames.");
-        System.out.println("2. Novo paciente.");
-        System.out.println("3. Consultar paciente.");
-        System.out.println("4. Finalização dos Atendiemntos.");
-        System.out.println("5. Estatísticas.");
-        System.out.println("6. Sair.");
+        System.out.println("---MENU---");
+        System.out.println("1. Carregar dados de exames");
+        System.out.println("2. Novo paciente");
+        System.out.println("3. Consultar paciente");
+        System.out.println("4. Finalização dos Atendiemntos");
+        System.out.println("5. Estatísticas");
+        System.out.println("6. Sair");
+        System.out.println("----------");
     }
-        
+    
+    //cadastra um paciente, calcula data de entrega, cria o pedido    
     public void adicionarPaciente(String cpf, String nome, ArrayList<Exame> examesSolicitados) {
 
         int cont = 1;
@@ -44,15 +48,16 @@ public class Laboratorio {
 
         System.out.println("Os exames estarão disponíveis no dia " + dataEntrega.toString().replace("-", "/") + " a partir das 17h.");
 
-       // int contPedido = 0;
+       
         try {
             PedidoExame pE = new PedidoExame(cpf, nome, dataRealz, dataEntrega, examesSolicitados);
-            pedidosDia.add(pedidosDia.size(), pE);//pedidosDia.add(contPedido, pE);
-            //contPedido++;
+            pedidosDia.add(pedidosDia.size(), pE);
         }catch (Exception e){
             System.out.println("Erro: " + e.getMessage());
         }
     }
+
+    //busca exame na lista linear por abreviação 
     public Exame buscarExame(String abrev) {
         for (int i = 0; i < listaExamesDisponiveis.size(); i++) {
             try {
@@ -67,6 +72,7 @@ public class Laboratorio {
         return null;
     }
 
+   //buscar paciente pelo cpf
     public PedidoExame procurarPaciente(String cpf){
         for (int i = 0; i<pedidosDia.size(); i++) {
             try {
@@ -80,7 +86,7 @@ public class Laboratorio {
         }
         return null;
     }
-
+    
     public void consultarPaciente (PedidoExame e) {
         e.mostrarPedido();
     }
@@ -184,7 +190,7 @@ public class Laboratorio {
         }
     }
     
-    // throws Exception só funciona no mai, aqui usa try catch
+    
     public void lerArquivo(){
         try {
             FileReader arq = new FileReader("exames.txt");
